@@ -1,0 +1,122 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<style>
+
+* {
+    font-family: "Amazon Ember", Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+mark {
+    color: #c7254e;
+    background: none;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.search-guide-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    height: 100%;
+}
+
+.search-options-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: flex-start;
+}
+
+.search-option {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    width: 90%;
+    justify-content: flex-start;
+}
+
+.search-label {
+    font-size: medium;
+    text-decoration: none;
+    padding-bottom: 10px;
+}
+
+.link-container {
+    display: flex;
+    overflow: hidden;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.link-container:hover {
+
+}
+
+.link-container a {
+    display: flex;
+    text-decoration: none;
+    color: #000;
+    padding: 10px;
+    width: auto;
+    transition: transform 0.3s;
+    cursor: default;
+}
+
+</style>
+    <div class="search-guide-container">
+        <div style="background-color: #e6e8eb;">
+
+        </div>
+
+        <div style="padding-left: 80px">
+            <h3>Inquiries about employee's name or age</h3>
+            <div class="search-options-container">
+                <div class="search-option">
+                    <a class="search-label">Display count of every unique name from database</a>
+                    <div class="link-container">
+                        <a >http://127.0.0.1:8000/unique_names/</a>
+                    </div>
+                </div>
+                <div class="search-option">
+                    <a class="search-label">Display count of employees whose name is <mark>{name}</mark> </a>
+                    <div class="link-container">
+                        <a>http://127.0.0.1:8000/name_occurrences/<mark>{name}</mark>/</a>
+                    </div>
+                </div>
+                <div class="search-option">
+                    <a class="search-label">Display list of employees that were born in interval from <mark>{start-date}</mark> to <mark>{end-date}</mark></a>
+                    <div class="link-container">
+                        <a>http://127.0.0.1:8000/search_by_age/<mark>{start-date}</mark>/<mark>{end-date}</mark>/</a>
+                    </div>
+                </div>
+                <div class="search-option">
+                    <a class="search-label">Display list of employees that were born in interval from <mark>{start-date}</mark> to <mark>{end-date}</mark> limited by <mark>{count}</mark></a>
+                    <div class="link-container">
+                        <a>http://127.0.0.1:8000/search_by_age/<mark>{start-date}</mark>/<mark>{end-date}</mark>/<mark>{count}</mark>/</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div style="background-color: #e6e8eb;">
+
+</div>
+<!--        </div>-->
+<!--        {% for employee in employees %}-->
+<!--            <p>{{employee.surname}}</p>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+
+{% endblock %}
