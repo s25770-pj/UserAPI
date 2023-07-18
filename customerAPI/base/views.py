@@ -23,17 +23,15 @@ def employee(request, pk):
 
 
 def get_unique_names_with_count(request):
-    names_with_count = Employee.objects.values('name').annotate(name_count=Count('name'))
-
-    return JsonResponse({'names_with_count': names_with_count})
+    names_with_count = Employee.objects.values('name').annotate(name_count=Count('name')).values('name', 'name_count')
+    names = list(names_with_count)
+    return JsonResponse({'names_with_count': names})
 
 
 def name_occurrences(request, name):
-    occurrences = Employee.objects.filter(name=name).annotate(name_count=Count('name'))
-    context = {
-        'name': name,
-        'occurrences': occurrences}
-    return JsonResponse({'name': name, 'occurrences': occurrences})
+    occurrences = Employee.objects.filter(name=name).annotate(name_count=Count('name')).values('name', 'name_count')
+    occurrences_list = list(occurrences)
+    return JsonResponse({'name': name, 'occurrences': occurrences_list})
 
 
 def search_employees_by_age(request, start_date, end_date, num_records=None):
